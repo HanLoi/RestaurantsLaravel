@@ -13,7 +13,7 @@ class CreateRestaurant extends Migration
      */
     public function up()
     {
-        Schema::create('_restaurant', function (Blueprint $table) {
+        Schema::create('restaurants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('adress');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Models\Restaurants;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
@@ -13,7 +15,9 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return view('restaurants.index');
+        $reviews = Restaurants::get();
+        //return view('restaurants.index',compact('reviews'));
+        dd($reviews);
     }
 
     /**
@@ -45,7 +49,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        //
+        $restaurants = Restaurants::findOrFail($id);
+
+        dd($restaurants);
     }
 
     /**
