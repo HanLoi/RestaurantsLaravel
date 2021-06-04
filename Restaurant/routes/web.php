@@ -20,8 +20,8 @@ Route::get('/',[RestaurantController::class,'index']);
 
 Route::get('/restaurant/show/{id}', [RestaurantController::class,'show']);
 
-Route::get('/restaurant/create', function () {
-    return view('restaurants.create');
-});
+Route::get('/restaurant/create', [RestaurantController::class,'create']);
+
+Route::post('/restaurant/create',[RestaurantController::class,'store']);
 
 

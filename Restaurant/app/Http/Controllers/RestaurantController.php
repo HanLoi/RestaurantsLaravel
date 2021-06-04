@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurants;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class RestaurantController extends Controller
 {
@@ -17,7 +18,7 @@ class RestaurantController extends Controller
     {
         $reviews = Restaurants::get();
         //return view('restaurants.index',compact('reviews'));
-        dd($reviews);
+        return view('restaurants.index',compact('reviews'));
     }
 
     /**
@@ -27,7 +28,7 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        //
+        return view('restaurants.create');
     }
 
     /**
@@ -38,7 +39,18 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request['name']);
+        Restaurants::create([
+            'name' => $request['name'],
+            'adress'  => $request['adress'],
+            'zipCode'  => $request['zipCode'],
+            'town'  => $request['town'],
+            'country'  => $request['country'],
+            'description'  => $request['description'],
+            'review' => $request['review']
+        ]);
+
+        return redirect('/');
     }
 
     /**
@@ -49,9 +61,9 @@ class RestaurantController extends Controller
      */
     public function show($id)
     {
-        $restaurants = Restaurants::findOrFail($id);
+        $reviews = Restaurants::findOrFail($id);
 
-        dd($restaurants);
+        return view('restaurants.show',compact('reviews'));
     }
 
     /**

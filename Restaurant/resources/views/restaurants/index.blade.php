@@ -1,10 +1,15 @@
 <h1>Hello</h1>
 
-<a href="/restaurant/show/1">To show =></a>
+
 
 @foreach($reviews as $review )
     <h2>Autheur : {{$review->name}}</h2>
-    <h3>Adresse : {{$review->adress}}, {{$review->zipCode}}, {{$review->town}},</h3>
-    <p>{{$review->description}}</p>
-    {{$review->review}}
+    <p>{{$review->review}}</p>
+    <p>
+        <a href="/restaurant/show/{{$review->id}}">=> Detail</a>
+    </p>
 @endforeach
+
+<p>
+    <a name="" id="" class="btn btn-primary" href="/restaurant/create" role="button">Create</a>
+</p>
