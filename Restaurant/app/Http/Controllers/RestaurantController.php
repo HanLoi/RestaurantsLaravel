@@ -39,7 +39,17 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request['name']);
+        $request->validate([
+            'name' => 'required|max:10',
+            'adress'  => 'required|max:5',
+            'zipCode'  =>'required' ,
+            'town'  =>'required' ,
+            'country'  =>'required' ,
+            'description'  =>'required' ,
+            'review' => 'required',
+        ]);
+
+
         Restaurants::create([
             'name' => $request['name'],
             'adress'  => $request['adress'],
@@ -74,7 +84,9 @@ class RestaurantController extends Controller
      */
     public function edit($id)
     {
-        //
+        $reviews = Restaurants::findOrFail($id);
+
+        return view('restaurants.edit',compact('reviews'));
     }
 
     /**
@@ -86,7 +98,19 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reviews = Restaurants::findOrFail($id);
+
+        $reviews->name = $request['name'];
+        $reviews->adress  = $request['adress'];
+        $reviews->zipCode  = $request['zipCode'];
+        $reviews->town  = $request['town'];
+        $reviews->country  = $request['country'];
+        $reviews->description  = $request['description'];
+        $reviews->review = $request['review'];
+
+        $reviews->save();
+
+        return redirect('/');
     }
 
     /**
@@ -97,6 +121,9 @@ class RestaurantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $reviews= Restaurants::findOrfail($id);
+        $reviews->delete();
+
+        return redirect('/');
     }
 }

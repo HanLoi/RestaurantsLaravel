@@ -33,3 +33,6 @@
     </div>
 </form>
 
+<p>
+    <a href="/">Retour index</a>
+</p>
